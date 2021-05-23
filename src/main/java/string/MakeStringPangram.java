@@ -5,13 +5,40 @@ import java.util.Map;
 
 public class MakeStringPangram {
 
-    //Time complexity - 2*O(n) = O(n)
-    //Space complexity - 2*O(n) = O(n)
     public static void main(String[] args) {
 
         String input = "The quick brown fox jumps";
+
+        //Time complexity - 2*O(n) = O(n)
+        //Space complexity - 2*O(n) = O(n)
         String result = findMissingCharactersToMakePangram(input);
         System.out.println(result);
+
+        //Time complexity - 2*O(n) = O(n)
+        //Space complexity - O(1)
+        String resultGFG = findMissingCharactersToMakePangramGFG(input);
+        System.out.println(resultGFG);
+
+    }
+
+    private static String findMissingCharactersToMakePangramGFG(String input) {
+
+        boolean[] charPresent = new boolean[26];
+        StringBuffer result = new StringBuffer();
+
+        for(char curr : input.toCharArray()){
+            if('A'<=curr && curr<='Z')
+                charPresent[curr-'A']=true;
+            else if('a'<=curr && curr<='z')
+                charPresent[curr-'a']=true;
+        }
+
+        for(int i=0;i<26;i++){
+            if(charPresent[i]==false)
+                result.append((char)(i+'a'));
+        }
+
+        return result.toString();
     }
 
     public static String findMissingCharactersToMakePangram(String input) {
